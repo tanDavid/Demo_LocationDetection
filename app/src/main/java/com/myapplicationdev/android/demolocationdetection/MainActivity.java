@@ -81,25 +81,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     };
                 };
-                if(checkPermission()){
+                    checkPermission();
                     client.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
-                    Task<Location> task = client.getLastLocation();
-                    task.addOnSuccessListener(MainActivity.this, new OnSuccessListener<Location>() {
-                        @Override
-                        public void onSuccess(Location location) {
-                            if (location != null){
-                                String msg = "Lat: " + location.getLatitude() + " Lng : " + location.getLongitude();
-                                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG).show();
-                            }else{
-                                String msg = "No Last Known Location Found";
-                                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
-                }else{
-                    Log.d("TAG", "Permission Failed");
-
-                }
 
             }
         });
